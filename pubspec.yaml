@@ -1,0 +1,39 @@
+name: procom
+description: "A new Flutter project."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  flutter_riverpod: ^2.4.10
+  firebase_core: ^2.26.0
+  firebase_auth: ^4.17.7
+  cloud_firestore: ^4.15.7
+  dio: ^5.4.1
+  shimmer: ^3.0.0
+  flutter_local_notifications: ^16.3.3
+  firebase_database: ^10.4.8
+  firebase_messaging: ^14.7.18
+  google_sign_in: ^6.2.1
+  hive_flutter: ^1.1.0
+  image_picker: ^1.0.7
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/data/
