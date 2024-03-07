@@ -1,8 +1,8 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class AppConstants {
-  static const appTitle = 'CricConnect';
-  static const appIdentifier = 'com.cricConnect.app';
+  static const appTitle = 'CricKit';
+  static const appIdentifier = 'com.cricKit.app';
 
   static const bioMinCount = 75;
   static const bioMaxCount = 200;
