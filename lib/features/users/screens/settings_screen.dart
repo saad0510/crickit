@@ -3,7 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../app/sizer.dart';
 import '../../../core/extensions/context_ext.dart';
+import '../../auth/screens/batting_skills_profile_screen.dart';
+import '../../auth/screens/bowling_skills_profile_screen.dart';
+import '../../auth/screens/cricket_skills_profile_screen.dart';
 import '../../auth/screens/education_profile_screen.dart';
+import '../../auth/screens/fielding_skills_profile_screen.dart';
 import '../../auth/screens/gender_profile_screen.dart';
 import '../../auth/screens/residence_profile_screen.dart';
 import '../../home/widgets/logout_button.dart';
@@ -29,13 +33,33 @@ class SettingsScreen extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               _EditProfileTile(
-                title: 'Marital Status',
-                subtitle: 'Edit your marital status',
+                title: 'About yourself',
+                subtitle: 'Edit your gender and bio',
                 screen: GenderProfileScreen(),
               ),
               _EditProfileTile(
+                title: 'Cricket Skills',
+                subtitle: 'Edit general cricket skills and roles',
+                screen: CricketSkillsProfileScreen(),
+              ),
+              _EditProfileTile(
+                title: 'Batting Skills',
+                subtitle: 'Edit batting skills',
+                screen: BattingSkillsProfileScreen(),
+              ),
+              _EditProfileTile(
+                title: 'Bowling Skills',
+                subtitle: 'Edit bowling skills',
+                screen: BowlingSkillsProfileScreen(),
+              ),
+              _EditProfileTile(
+                title: 'Fielding Skills',
+                subtitle: 'Edit fielding skills',
+                screen: FieldingSkillsProfileScreen(),
+              ),
+              _EditProfileTile(
                 title: 'Residency',
-                subtitle: 'Edit house, city, country, and addresses',
+                subtitle: 'Edit city, country, and addresses',
                 screen: ResidenceProfileScreen(),
               ),
               _EditProfileTile(

@@ -24,7 +24,7 @@ final routeProvider = FutureProvider<AppRoutes>(
       return AppRoutes.login;
     }
     final emailVerified = await authRepo.isEmailVerified();
-    if (emailVerified) {
+    if (emailVerified && false) {
       return AppRoutes.emailVerification;
     }
 

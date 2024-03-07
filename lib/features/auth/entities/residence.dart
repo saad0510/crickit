@@ -11,9 +11,11 @@ class Residence {
     required this.permanentAddress,
   });
 
-  factory Residence.empty() => const _EmptyResidence();
-
-  bool get isEmpty => this is _EmptyResidence;
+  const Residence.empty()
+      : city = '',
+        country = '',
+        currentAddress = '',
+        permanentAddress = '';
 
   Map<String, dynamic> toMap() {
     return {
@@ -47,14 +49,4 @@ class Residence {
       permanentAddress: permanentAddress ?? this.permanentAddress,
     );
   }
-}
-
-class _EmptyResidence extends Residence {
-  const _EmptyResidence()
-      : super(
-          city: '',
-          country: '',
-          currentAddress: '',
-          permanentAddress: '',
-        );
 }

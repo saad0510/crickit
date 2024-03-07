@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 
 import '../../../../app/sizer.dart';
+import '../../../../core/extensions/datetime_ext.dart';
 import '../../../auth/entities/user_data.dart';
 import 'information_card.dart';
 import 'information_row.dart';
 
-class ContactCard extends StatelessWidget {
-  const ContactCard(this.user, {super.key});
+class AboutCard extends StatelessWidget {
+  const AboutCard(this.user, {super.key});
 
   final UserData user;
 
   @override
   Widget build(BuildContext context) {
     return InformationCard(
-      title: 'Contact',
+      title: 'About',
       children: [
         InformationRow(
           title: 'Email',
@@ -21,8 +22,8 @@ class ContactCard extends StatelessWidget {
         ),
         AppSizes.tinyY,
         InformationRow(
-          title: 'Phone',
-          value: user.detail.phone,
+          title: 'Age',
+          value: '${user.detail.birthDate.ageInYears} years old',
         ),
         AppSizes.tinyY,
       ],

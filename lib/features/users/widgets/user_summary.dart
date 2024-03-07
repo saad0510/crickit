@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../app/sizer.dart';
-import '../../../core/extensions/datetime_ext.dart';
 import '../../auth/entities/user_data.dart';
+import 'user_image.dart';
 
 class UserSummary extends ConsumerWidget {
   const UserSummary(this.user, {super.key});
@@ -12,27 +12,33 @@ class UserSummary extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+    return Row(
       children: [
-        Text(
-          user.detail.name,
-          style: Theme.of(context).textTheme.labelLarge,
+        UserImage(
+          user.detail.imageUrl,
+          radius: 90,
         ),
-        AppSizes.smallY,
-        _IconText(
-          Icons.location_on,
-          user.profile.residence.city,
+        AppSizes.smallX,
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                user.detail.name,
+                style: Theme.of(context).textTheme.labelLarge,
+              ),
+              AppSizes.tinyY,
+              _IconText(
+                Icons.person_3,
+                user.profile.skills.cricketerType.toString(),
+              ),
+              const _IconText(
+                Icons.sports_cricket,
+                '0 Matches',
+              ),
+            ],
+          ),
         ),
-        _IconText(
-          Icons.cake,
-          '${user.detail.birthDate.ageInYears} years old',
-        ),
-        _IconText(
-          Icons.school,
-          user.profile.education.level.toString(),
-        ),
-        AppSizes.tinyY,
       ],
     );
   }

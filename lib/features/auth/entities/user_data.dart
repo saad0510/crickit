@@ -33,7 +33,6 @@ class UserData {
     String? uid,
     UserDetail? detail,
     UserProfile? profile,
-    bool? phoneVerified,
   }) {
     return UserData(
       uid: uid ?? this.uid,

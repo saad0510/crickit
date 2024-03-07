@@ -32,16 +32,6 @@ class InformationCard extends ConsumerWidget {
         style: Theme.of(context).textTheme.labelMedium,
       ),
       controlAffinity: ListTileControlAffinity.leading,
-      trailing: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (onOpened != null)
-            IconButton(
-              onPressed: onOpened,
-              icon: Icon(Icons.menu, size: 20.sp),
-            ),
-        ],
-      ),
       children: children,
     );
   }

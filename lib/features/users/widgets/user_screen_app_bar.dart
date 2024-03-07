@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../app/routes.dart';
 import '../../../app/sizer.dart';
 import '../../../core/extensions/context_ext.dart';
-import '../../home/widgets/app_logo.dart';
 import '../controllers/current_user_provider.dart';
 
 class UserScreenAppBar extends ConsumerWidget implements PreferredSizeWidget {
@@ -18,7 +17,8 @@ class UserScreenAppBar extends ConsumerWidget implements PreferredSizeWidget {
       automaticallyImplyLeading: false,
       toolbarHeight: 70.h,
       centerTitle: false,
-      title: const AppLogo(),
+      title: const Text('Profile'),
+      titleTextStyle: Theme.of(context).textTheme.titleMedium,
       actions: [
         if (!hideSensitive)
           IconButton(

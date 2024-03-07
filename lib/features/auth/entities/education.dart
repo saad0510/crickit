@@ -15,9 +15,12 @@ class Education {
     required this.endDate,
   });
 
-  factory Education.empty() => _EmptyEducation();
-
-  bool get isEmpty => this is _EmptyEducation;
+  Education.empty()
+      : institute = '',
+        position = '',
+        level = EducationLevel.none,
+        startDate = DateTime(0),
+        endDate = DateTime(0);
 
   Map<String, dynamic> toMap() {
     return {
@@ -55,15 +58,4 @@ class Education {
       endDate: endDate,
     );
   }
-}
-
-class _EmptyEducation extends Education {
-  _EmptyEducation()
-      : super(
-          institute: '',
-          position: '',
-          level: EducationLevel.none,
-          startDate: DateTime(0),
-          endDate: DateTime(0),
-        );
 }

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../app/constants.dart';
 import '../../../app/routes.dart';
 import '../../../app/sizer.dart';
 import '../../../core/extensions/context_ext.dart';
-import '../../../core/extensions/datetime_ext.dart';
 import '../../../core/loading/loading_elevated_button.dart';
 import '../../../core/utils/form_validations.dart';
 import '../controllers/auth_notifier.dart';
@@ -42,8 +40,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const MainTitle(
-                'Join us to find your life partner!',
-                subtitle: AppConstants.permanentInfoWarning,
+                'Join us to find your cricket partners!',
               ),
               AppSizes.largeY,
               AppTextField.name(
@@ -74,7 +71,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
               AppSizes.normalY,
               AppDatePickerField(
                 label: 'Birth Date',
-                maxDate: DateTime.now().subtractYears(18),
+                maxDate: DateTime.now(),
                 onChanged: (x) => user = user.copyWith(birthDate: x),
               ),
               AppSizes.largeY,
@@ -82,20 +79,9 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                 onPressed: submit,
                 child: const Text('Sign Up'),
               ),
-              AppSizes.smallY,
-              HighlightedTextButton(
-                text: "By continuing, you agree to our Terms & Conditions and Privacy Policy",
-                highlight: '',
-                onPressed: () => context.replace(AppRoutes.login),
-              ),
               HighlightedTextButton(
                 text: "Already have an account? Login",
                 highlight: 'Login',
-                onPressed: () => context.replace(AppRoutes.login),
-              ),
-              HighlightedTextButton(
-                text: "Need help? Contact us",
-                highlight: 'Contact us',
                 onPressed: () => context.replace(AppRoutes.login),
               ),
             ],

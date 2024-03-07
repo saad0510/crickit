@@ -7,6 +7,7 @@ import '../controllers/countries_provider.dart';
 import '../entities/user_profile.dart';
 import '../widgets/app_autocomplete_field.dart';
 import '../widgets/app_text_field.dart';
+import '../widgets/main_title.dart';
 
 class ResidenceProfileScreen extends ConsumerWidget {
   const ResidenceProfileScreen({super.key});
@@ -28,12 +29,8 @@ class ResidenceProfileScreen extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(
-              'Residency',
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
-            AppSizes.normalY,
+            const MainTitle('Residency'),
+            AppSizes.largeY,
             AppTextField.name(
               label: 'City',
               hint: 'Enter current city of residence',
@@ -42,18 +39,6 @@ class ResidenceProfileScreen extends ConsumerWidget {
               onSubmit: (x) => update(
                 profile.copyWith(
                   residence: profile.residence.copyWith(city: x),
-                ),
-              ),
-            ),
-            AppSizes.normalY,
-            AppTextField.name(
-              label: 'Permanent Address',
-              hint: 'Enter your permanent home address',
-              initialValue: profile.residence.permanentAddress,
-              listenChanges: true,
-              onSubmit: (x) => update(
-                profile.copyWith(
-                  residence: profile.residence.copyWith(permanentAddress: x),
                 ),
               ),
             ),
@@ -78,6 +63,18 @@ class ResidenceProfileScreen extends ConsumerWidget {
               onSubmit: (x) => update(
                 profile.copyWith(
                   residence: profile.residence.copyWith(currentAddress: x),
+                ),
+              ),
+            ),
+            AppSizes.normalY,
+            AppTextField.name(
+              label: 'Permanent Address',
+              hint: 'Enter your permanent home address',
+              initialValue: profile.residence.permanentAddress,
+              listenChanges: true,
+              onSubmit: (x) => update(
+                profile.copyWith(
+                  residence: profile.residence.copyWith(permanentAddress: x),
                 ),
               ),
             ),

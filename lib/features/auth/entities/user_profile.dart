@@ -1,22 +1,22 @@
 import 'education.dart';
 import 'enums/gender.dart';
 import 'residence.dart';
+import 'skills/cricketer_skills.dart';
+import 'user_health.dart';
 
 class UserProfile {
   final String bio;
   final Gender gender;
-  final double height;
-  final double weight;
-  final bool smoking;
+  final UserHealth health;
+  final CricketerSkills skills;
   final Residence residence;
   final Education education;
 
   const UserProfile({
     required this.bio,
     required this.gender,
-    required this.height,
-    required this.weight,
-    required this.smoking,
+    required this.health,
+    required this.skills,
     required this.residence,
     required this.education,
   });
@@ -29,9 +29,8 @@ class UserProfile {
     return {
       'bio': bio,
       'gender': gender.toMap(),
-      'height': height,
-      'weight': weight,
-      'smoking': smoking,
+      'health': health.toMap(),
+      'skills': skills.toMap(),
       'residence': residence.toMap(),
       'education': education.toMap(),
     };
@@ -42,9 +41,8 @@ class UserProfile {
     return UserProfile(
       bio: map['bio'],
       gender: Gender.fromMap(map['gender']),
-      height: (map['height'] as num).toDouble(),
-      weight: (map['weight'] as num).toDouble(),
-      smoking: map['smoking'],
+      health: UserHealth.fromMap(map['health']),
+      skills: CricketerSkills.fromMap(map['skills'] ?? const CricketerSkills.empty().toMap()),
       residence: Residence.fromMap(map['residence']),
       education: Education.fromMap(map['education']),
     );
@@ -53,18 +51,16 @@ class UserProfile {
   UserProfile copyWith({
     String? bio,
     Gender? gender,
-    double? height,
-    double? weight,
-    bool? smoking,
+    UserHealth? health,
+    CricketerSkills? skills,
     Residence? residence,
     Education? education,
   }) {
     return UserProfile(
       bio: bio ?? this.bio,
       gender: gender ?? this.gender,
-      height: height ?? this.height,
-      weight: weight ?? this.weight,
-      smoking: smoking ?? this.smoking,
+      health: health ?? this.health,
+      skills: skills ?? this.skills,
       residence: residence ?? this.residence,
       education: education ?? this.education,
     );
@@ -76,10 +72,9 @@ class _EmptyUserProfile extends UserProfile {
       : super(
           bio: '',
           gender: Gender.male,
-          height: -1,
-          weight: -1,
-          smoking: false,
-          residence: Residence.empty(),
+          health: const UserHealth.empty(),
+          skills: const CricketerSkills.empty(),
+          residence: const Residence.empty(),
           education: Education.empty(),
         );
 }

@@ -16,16 +16,14 @@ class ReviewProfileScreen extends StatelessWidget {
           children: [
             Image.asset(
               AppImages.review,
-              height: 200.h,
+              height: 250.h,
               cacheHeight: 800,
             ),
-            Padding(
-              padding: AppPaddings.normal,
-              child: Text(
-                'Review your information\ncarefully and click save to\ncomplete your profile',
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
+            AppSizes.largeY,
+            Text(
+              'Review your information carefully and\nclick save to complete your profile',
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ],
         ),

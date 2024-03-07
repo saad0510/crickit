@@ -22,6 +22,8 @@ class UserCoverImage extends StatelessWidget {
   Widget build(BuildContext context) {
     late Widget child;
 
+    const borderRadius = BorderRadius.all(Radius.circular(12));
+
     if (url.isEmpty) {
       child = SizedBox(
         height: height.h,
@@ -91,6 +93,9 @@ class UserCoverImage extends StatelessWidget {
       );
     }
 
-    return child;
+    return ClipRRect(
+      borderRadius: borderRadius,
+      child: child,
+    );
   }
 }

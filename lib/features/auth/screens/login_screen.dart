@@ -36,7 +36,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const MainTitle('Discover your perfect match today!'),
+              const MainTitle('Find your perfect cricket team today!'),
               AppSizes.largeY,
               AppTextField.email(
                 label: 'Email',
@@ -50,7 +50,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 validator: FormValidations.longInput,
                 onSubmit: (x) => password = x,
               ),
-              AppSizes.largeY,
+              AppSizes.normalY,
               LoadingElevatedButton(
                 onPressed: submit,
                 child: const Text('Login'),

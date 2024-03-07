@@ -2,22 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../app/sizer.dart';
-import '../../../core/loading/loading_widget.dart';
 import '../../home/widgets/logout_button.dart';
 import '../controllers/user_provider.dart';
-import '../repositories/auth_repo.dart';
 import '../widgets/highlighted_text_button.dart';
 
-class EmailVerificationScreen extends ConsumerStatefulWidget {
+class EmailVerificationScreen extends ConsumerWidget {
   const EmailVerificationScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _EmailVerificationScreenState();
-}
-
-class _EmailVerificationScreenState extends ConsumerState<EmailVerificationScreen> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final email = ref.watch(userProvider.select((u) => u.detail.email));
 
     return Scaffold(
@@ -32,17 +25,9 @@ class _EmailVerificationScreenState extends ConsumerState<EmailVerificationScree
           children: [
             AppSizes.normalY,
             HighlightedTextButton(
-              text: 'We have sent a verification code at $email. Enter it below to proceed ahead',
+              text: 'We have sent a verification email at $email.',
               highlight: email,
               onPressed: null,
-            ),
-            AppSizes.largeY,
-            AppSizes.largeY,
-            LoadingWidget(
-              value: ref.watch(_emailVerificationProvider),
-              builder: (_) {
-                return const Text('anything');
-              },
             ),
           ],
         ),
@@ -51,9 +36,3 @@ class _EmailVerificationScreenState extends ConsumerState<EmailVerificationScree
     );
   }
 }
-
-final _emailVerificationProvider = FutureProvider<void>(
-  (ref) {
-    return ref.watch(authRepoProvider).sendEmailVerification();
-  },
-);

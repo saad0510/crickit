@@ -4,10 +4,16 @@ import '../../../app/assets.dart';
 import '../../../app/sizer.dart';
 
 class MainTitle extends StatelessWidget {
-  const MainTitle(this.text, {super.key, this.subtitle});
+  const MainTitle(
+    this.text, {
+    super.key,
+    this.subtitle,
+    this.showLogo = false,
+  });
 
   final String text;
   final String? subtitle;
+  final bool showLogo;
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +32,13 @@ class MainTitle extends StatelessWidget {
                     ?.copyWith(fontWeight: FontWeight.w500),
               ),
             ),
-            AppSizes.smallX,
-            Image.asset(
-              AppImages.appLogo,
-              width: 0.17.dw,
-            ),
+            if (showLogo) ...[
+              AppSizes.smallX,
+              Image.asset(
+                AppImages.appLogo,
+                width: 0.17.dw,
+              ),
+            ],
           ],
         ),
         if (subtitle != null) ...[

@@ -18,12 +18,12 @@ class InformationRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final style = TextStyle(
       fontWeight: FontWeight.normal,
-      color: Theme.of(context).primaryColor,
+      color: Theme.of(context).colorScheme.primary,
     );
 
     return Card(
       elevation: 0,
-      color: Colors.white70,
+      color: Colors.white,
       child: Padding(
         padding: AppPaddings.small,
         child: Row(

@@ -7,8 +7,11 @@ import '../../users/controllers/current_user_provider.dart';
 import '../controllers/user_notifier.dart';
 import '../widgets/main_title.dart';
 import '../widgets/steps_list.dart';
-import 'about_yourself_screen.dart';
+import 'batting_skills_profile_screen.dart';
+import 'bowling_skills_profile_screen.dart';
+import 'cricket_skills_profile_screen.dart';
 import 'education_profile_screen.dart';
+import 'fielding_skills_profile_screen.dart';
 import 'gender_profile_screen.dart';
 import 'residence_profile_screen.dart';
 import 'review_profile_screen.dart';
@@ -28,7 +31,10 @@ class _CompleteProfileScreenState extends ConsumerState<CompleteProfileScreen> {
   final screens = [
     const GenderProfileScreen(),
     const ResidenceProfileScreen(),
-    const AboutYourselfScreen(),
+    const CricketSkillsProfileScreen(),
+    const BattingSkillsProfileScreen(),
+    const BowlingSkillsProfileScreen(),
+    const FieldingSkillsProfileScreen(),
     const EducationProfileScreen(),
     const ReviewProfileScreen(),
   ];
@@ -41,8 +47,11 @@ class _CompleteProfileScreenState extends ConsumerState<CompleteProfileScreen> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Padding(
-            padding: AppPaddings.normal,
-            child: const MainTitle('Complete Profile'),
+            padding: AppPaddings.normal.copyWith(bottom: 0),
+            child: const MainTitle(
+              'Complete Profile',
+              showLogo: true,
+            ),
           ),
           Expanded(
             child: Form(

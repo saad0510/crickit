@@ -5,27 +5,32 @@ import '../../../auth/entities/user_data.dart';
 import 'information_card.dart';
 import 'information_row.dart';
 
-class AboutUserCard extends StatelessWidget {
-  const AboutUserCard(this.user, {super.key});
+class UserHealthCard extends StatelessWidget {
+  const UserHealthCard(this.user, {super.key});
 
   final UserData user;
 
   @override
   Widget build(BuildContext context) {
-    final profile = user.profile;
+    final health = user.profile.health;
 
     return InformationCard(
-      title: 'Details',
+      title: 'Health',
       expanded: true,
       children: [
         InformationRow(
+          title: 'Smoking',
+          value: health.smoking ? 'Yes' : 'No',
+        ),
+        AppSizes.tinyY,
+        InformationRow(
           title: 'Height (Feet)',
-          value: profile.height.toStringAsFixed(1),
+          value: health.height.toStringAsFixed(1),
         ),
         AppSizes.tinyY,
         InformationRow(
           title: 'Weight (Kilograms)',
-          value: profile.weight.toStringAsFixed(1),
+          value: health.weight.toStringAsFixed(1),
         ),
         AppSizes.tinyY,
       ],
