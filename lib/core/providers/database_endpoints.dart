@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../features/auth/entities/user_data.dart';
+import '../../features/leagues/entities/league.dart';
 import '../../features/teams/entities/team.dart';
 import 'firebase_providers.dart';
 
@@ -27,6 +28,14 @@ class DatabaseEndpoints {
       .withConverter(
         fromFirestore: (doc, _) => Team.fromMap(doc.data()),
         toFirestore: (team, _) => team.toMap(),
+      );
+
+  late final leaguesRef = ref
+      .read(firestoreProvider) //
+      .collection('leagues')
+      .withConverter(
+        fromFirestore: (doc, _) => League.fromMap(doc.data()),
+        toFirestore: (league, _) => league.toMap(),
       );
 
   late final userImagesRef = ref.read(firebaseStorageProvider).ref('images');

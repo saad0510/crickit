@@ -11,11 +11,11 @@ class TeamConstraints {
     required this.maxWicketKeepers,
   });
 
-  const TeamConstraints.zero()
-      : maxPlayers = 0,
-        maxBatsmen = 0,
-        maxBowlers = 0,
-        maxWicketKeepers = 0;
+  const TeamConstraints.initial()
+      : maxPlayers = 2,
+        maxBatsmen = 2,
+        maxBowlers = 2,
+        maxWicketKeepers = 2;
 
   Map<String, dynamic> toMap() {
     return {

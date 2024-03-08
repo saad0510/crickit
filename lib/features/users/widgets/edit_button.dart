@@ -29,9 +29,10 @@ class EditButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
+      clipBehavior: Clip.none,
       fit: StackFit.expand,
       children: [
-        if (child != null) child!,
+        if (child != null) Positioned.fill(child: child!),
         Positioned(
           top: top?.sp,
           right: right?.sp,

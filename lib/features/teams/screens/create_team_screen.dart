@@ -34,7 +34,7 @@ class _CreateTeamScreenState extends ConsumerState<CreateTeamScreen> {
         teamId: '',
         title: '',
         description: '',
-        constraints: const TeamConstraints.zero(),
+        constraints: const TeamConstraints.initial(),
         members: [
           TeamMember(
             uid: ref.watch(userIdProvider),

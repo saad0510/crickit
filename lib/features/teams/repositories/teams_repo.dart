@@ -20,6 +20,11 @@ class TeamsRepo {
     await endpoints.teamsRef.doc(team.teamId).set(team);
   }
 
+  Future<Team> getTeam(String id) async {
+    final data = await endpoints.teamsRef.doc(id).get();
+    return data.data()!;
+  }
+
   Stream<List<Team>> getAllTeams() {
     final stream = endpoints.teamsRef.snapshots();
     return stream.map((snap) => snap.docs.map((doc) => doc.data()).toList());

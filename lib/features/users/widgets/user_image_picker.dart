@@ -3,17 +3,16 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:procom/features/auth/controllers/user_notifier.dart';
 
 import '../../../app/sizer.dart';
+import '../../auth/controllers/user_notifier.dart';
 import '../../auth/controllers/user_provider.dart';
-import 'edit_button.dart';
 import 'user_image.dart';
 
 class UserImagePicker extends ConsumerStatefulWidget {
   const UserImagePicker({
     super.key,
-    this.radius = 100,
+    this.radius = 90,
   });
 
   final double radius;
@@ -36,7 +35,7 @@ class _UserImagePickerState extends ConsumerState<UserImagePicker> {
     }
 
     void pickImage() async {
-      final xfile = await ImagePicker().pickImage(source: ImageSource.gallery);
+      final xfile = await ImagePicker().pickImage(source: ImageSource.camera);
       if (xfile == null) return;
       propagateChange(await xfile.readAsBytes());
     }
@@ -44,18 +43,13 @@ class _UserImagePickerState extends ConsumerState<UserImagePicker> {
     if (bytes != null) {
       return SizedBox.square(
         dimension: widget.radius.sp,
-        child: EditButton(
-          bottom: 0,
-          right: 10,
-          onEdit: () => setState(() => bytes = null),
-          child: ClipOval(
-            child: Image.memory(
-              bytes!,
-              width: double.infinity,
-              height: double.infinity,
-              fit: BoxFit.cover,
-              alignment: Alignment.topCenter,
-            ),
+        child: ClipOval(
+          child: Image.memory(
+            bytes!,
+            width: double.infinity,
+            height: double.infinity,
+            fit: BoxFit.cover,
+            alignment: Alignment.topCenter,
           ),
         ),
       );
@@ -64,10 +58,8 @@ class _UserImagePickerState extends ConsumerState<UserImagePicker> {
     if (imageUrl.isNotEmpty) {
       return SizedBox.square(
         dimension: widget.radius.sp,
-        child: EditButton(
-          bottom: 0,
-          right: 10,
-          onEdit: pickImage,
+        child: InkWell(
+          onTap: () => setState(() => bytes = null),
           child: ClipOval(
             child: Image.network(
               imageUrl,

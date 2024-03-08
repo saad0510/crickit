@@ -22,7 +22,7 @@ class Team with Compare<Team> {
     required this.createdAt,
   });
 
-  bool get isAvailable => validMembers;
+  bool get isAvailable => members.length < constraints.maxPlayers;
 
   bool get isValid =>
       validMembers && //

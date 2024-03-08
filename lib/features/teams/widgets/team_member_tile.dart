@@ -39,9 +39,10 @@ class TeamMemberTile extends ConsumerWidget {
           padding: AppPaddings.tiny,
           child: Row(
             children: [
+              AppSizes.tinyX,
               UserImage(
                 user.detail.imageUrl,
-                radius: 70,
+                radius: 65,
                 userId: user.uid,
               ),
               AppSizes.tinyX,

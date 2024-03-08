@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../app/sizer.dart';
 import '../../../core/extensions/context_ext.dart';
+import '../../leagues/screens/create_league_screen.dart';
 import '../../users/controllers/override_widget.dart';
 import '../controllers/current_team_member_provider.dart';
 import '../controllers/current_team_notifier.dart';
@@ -101,10 +102,17 @@ class TeamDetailScreen extends ConsumerWidget {
               title: const Text('Bowling Lineup'),
               trailing: const Icon(Icons.keyboard_arrow_right_rounded),
             ),
+            AppSizes.largeY,
+            AppSizes.largeY,
           ],
         ),
       ),
       bottomNavigationBar: const JoinTeamButton(),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => newScreen(const CreateLeagueScreen()),
+        icon: const Icon(Icons.add),
+        label: const Text('Leagure'),
+      ),
     );
   }
 }
