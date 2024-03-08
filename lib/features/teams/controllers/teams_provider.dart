@@ -10,14 +10,14 @@ final teamsProvider = StreamProvider<List<Team>>(
   name: 'all_teams',
 );
 
-final userTeamsProvider = FutureProvider<List<Team>>(
+final joinedTeamsProvider = FutureProvider<List<Team>>(
   (ref) async {
     final userId = ref.watch(userIdProvider);
     final teams = await ref.watch(teamsProvider.future);
     final userTeams = teams.where((t) => t.members.find((m) => m.uid == userId) != null);
     return userTeams.toList();
   },
-  name: 'user_teams',
+  name: 'joined_teams',
 );
 
 final availableTeamsProvider = FutureProvider<List<Team>>(

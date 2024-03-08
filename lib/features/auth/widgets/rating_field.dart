@@ -25,13 +25,13 @@ class RatingField extends StatelessWidget {
         borderRadius: const BorderRadius.all(Radius.circular(12)),
         child: Container(
           padding: AppPaddings.small,
-          color: Theme.of(context).colorScheme.onPrimary,
+          color: Theme.of(context).colorScheme.primary,
           child: Row(
             children: [
               Expanded(
                 child: Text(
                   label,
-                  style: Theme.of(context).textTheme.bodyLarge,
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(color: Colors.white),
                 ),
               ),
               RatingBar.builder(

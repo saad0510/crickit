@@ -33,7 +33,7 @@ class GenderProfileScreen extends ConsumerWidget {
           children: [
             Text(
               'Gender',
-              style: Theme.of(context).textTheme.titleLarge,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
             AppSizes.normalY,
             for (final gender in Gender.values) ...[
@@ -52,10 +52,12 @@ class GenderProfileScreen extends ConsumerWidget {
               ),
               AppSizes.smallY,
             ],
+            AppSizes.smallY,
+            const Divider(),
             AppSizes.normalY,
             Text(
               'Bio',
-              style: Theme.of(context).textTheme.titleLarge,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
             AppSizes.normalY,
             AppTextField(
@@ -72,10 +74,12 @@ class GenderProfileScreen extends ConsumerWidget {
                 profile.copyWith(bio: x),
               ),
             ),
+            AppSizes.smallY,
+            const Divider(),
             AppSizes.normalY,
             Text(
               'Health',
-              style: Theme.of(context).textTheme.titleLarge,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
             AppSizes.normalY,
             Row(

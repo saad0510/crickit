@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../users/repositories/user_repo.dart';
@@ -14,8 +16,9 @@ class UserNotifier extends StreamNotifier<UserData?> {
     return userRepo.streamUser(uid);
   }
 
-  Future<void> changeProfilePic(String url) async {
+  Future<void> changeProfilePic(Uint8List bytes) async {
     final oldUser = state.requireValue!;
+    final url = await ref.watch(userRepoProvider).uploadImage(oldUser.uid, bytes);
     final user = oldUser.copyWith(
       detail: oldUser.detail.copyWith(imageUrl: url),
     );

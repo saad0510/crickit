@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../app/sizer.dart';
 import '../../auth/entities/user_data.dart';
+import '../controllers/current_user_provider.dart';
 import 'user_image.dart';
+import 'user_image_picker.dart';
 
 class UserSummary extends ConsumerWidget {
   const UserSummary(this.user, {super.key});
@@ -12,12 +14,17 @@ class UserSummary extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final publicView = ref.watch(hideSensitiveInfo);
+
     return Row(
       children: [
-        UserImage(
-          user.detail.imageUrl,
-          radius: 90,
-        ),
+        if (publicView)
+          UserImage(
+            user.detail.imageUrl,
+            radius: 90,
+          )
+        else
+          const UserImagePicker(radius: 90),
         AppSizes.smallX,
         Expanded(
           child: Column(
@@ -30,7 +37,7 @@ class UserSummary extends ConsumerWidget {
               AppSizes.tinyY,
               _IconText(
                 Icons.person_3,
-                user.profile.skills.cricketerType.toString(),
+                user.profile.skills.playerType.toString(),
               ),
               const _IconText(
                 Icons.sports_cricket,

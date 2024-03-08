@@ -1,15 +1,17 @@
-class FieldingSkills {
+import 'i_skills.dart';
+
+class FieldingSkills extends ISKills {
   final int catching;
   final int groundFielding;
   final int throwing;
 
-  const FieldingSkills({
+  FieldingSkills({
     required this.catching,
     required this.groundFielding,
     required this.throwing,
   });
 
-  const FieldingSkills.empty()
+  FieldingSkills.empty()
       : catching = 0,
         groundFielding = 0,
         throwing = 0;
@@ -43,4 +45,11 @@ class FieldingSkills {
       throwing: throwing ?? this.throwing,
     );
   }
+
+  @override
+  List<int> get values => [
+        catching,
+        groundFielding,
+        throwing,
+      ];
 }

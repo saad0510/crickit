@@ -25,6 +25,7 @@ class TeamMemberTile extends ConsumerWidget {
     final member = ref.watch(currentTeamMemberProvider);
 
     return Material(
+      elevation: 1,
       borderRadius: const BorderRadius.all(Radius.circular(12)),
       child: InkWell(
         borderRadius: const BorderRadius.all(Radius.circular(12)),
@@ -34,37 +35,39 @@ class TeamMemberTile extends ConsumerWidget {
             isCaptain ? const TeamMemberDetailScreen() : const OtherUserDetailScreen(),
           );
         },
-        child: Row(
-          children: [
-            UserImage(
-              user.detail.imageUrl,
-              radius: 70,
-              userId: user.uid,
-            ),
-            AppSizes.tinyX,
-            AppSizes.tinyX,
-            Expanded(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    user.detail.name,
-                  ),
-                  AppSizes.tinyY,
-                  AppSizes.tinyY,
-                  Row(
-                    children: [
-                      TeamPositionTag(member.position),
-                      AppSizes.tinyX,
-                      TeamRoleTag(member.role),
-                    ],
-                  ),
-                ],
+        child: Padding(
+          padding: AppPaddings.tiny,
+          child: Row(
+            children: [
+              UserImage(
+                user.detail.imageUrl,
+                radius: 70,
+                userId: user.uid,
               ),
-            ),
-            trailing ?? const SizedBox.shrink(),
-          ],
+              AppSizes.tinyX,
+              AppSizes.tinyX,
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(user.detail.name),
+                    AppSizes.tinyY,
+                    AppSizes.tinyY,
+                    Row(
+                      children: [
+                        TeamPositionTag(member.position),
+                        AppSizes.tinyX,
+                        TeamRoleTag(member.role),
+                      ],
+                    ),
+                    AppSizes.smallY,
+                  ],
+                ),
+              ),
+              trailing ?? const SizedBox.shrink(),
+            ],
+          ),
         ),
       ),
     );

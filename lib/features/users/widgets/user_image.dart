@@ -24,6 +24,7 @@ class UserImage extends StatelessWidget {
         child: Icon(
           Icons.account_circle,
           size: radius.sp,
+          color: Colors.black,
         ),
       );
     } else {

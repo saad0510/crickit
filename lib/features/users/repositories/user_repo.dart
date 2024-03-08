@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/providers/database_endpoints.dart';
@@ -28,6 +30,11 @@ class UserRepo {
   Stream<UserData> streamUser(String uid) {
     final snap = endpoints.usersRef.doc(uid).snapshots();
     return snap.map((doc) => doc.data()!);
+  }
+
+  Future<String> uploadImage(String userId, Uint8List bytes) async {
+    final task = await endpoints.userImagesRef.child(userId).putData(bytes);
+    return task.ref.getDownloadURL();
   }
 
   Future<UserMetaData> getMetadata(String userId) async {

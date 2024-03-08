@@ -21,6 +21,10 @@ class SettingsScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Settings'),
+        actions: [
+          const LogoutButton.short(),
+          AppSizes.tinyX,
+        ],
       ),
       body: ListTileTheme(
         data: Theme.of(context).listTileTheme.copyWith(
@@ -70,11 +74,6 @@ class SettingsScreen extends ConsumerWidget {
             ],
           ),
         ),
-      ),
-      bottomSheet: const Divider(height: 0),
-      bottomNavigationBar: Padding(
-        padding: AppPaddings.small,
-        child: const LogoutButton(),
       ),
     );
   }

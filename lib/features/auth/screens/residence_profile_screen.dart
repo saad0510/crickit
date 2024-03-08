@@ -30,7 +30,7 @@ class ResidenceProfileScreen extends ConsumerWidget {
           children: [
             Text(
               'Residency',
-              style: Theme.of(context).textTheme.titleLarge,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
             AppSizes.largeY,
             AppTextField.name(

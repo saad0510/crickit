@@ -20,7 +20,7 @@ class AvailableTeamsList extends ConsumerWidget {
           key: ValueKey(team),
           userId: team.createdBy,
           moreOverrides: [
-            currentTeamProvider.overrideWithValue(team),
+            currentTeamProvider.overrideWith((_) => team),
           ],
           child: const TeamTile(),
         );

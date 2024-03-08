@@ -17,7 +17,10 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -49,20 +52,12 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCU0qUsj6nrtfoFOMrJuutTLq6Xlh98EV4',
-    appId: '1:780496555685:web:47e7d067f09d0e162d474c',
-    messagingSenderId: '780496555685',
-    projectId: 'procom-app-dev',
-    authDomain: 'procom-app-dev.firebaseapp.com',
-    storageBucket: 'procom-app-dev.appspot.com',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCVh3ldK-GAlX1Ubm_50zgY-pxc0_NTaVk',
     appId: '1:780496555685:android:8489d3cb0c41a7332d474c',
     messagingSenderId: '780496555685',
     projectId: 'procom-app-dev',
+    databaseURL: 'https://procom-app-dev-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'procom-app-dev.appspot.com',
   );
 }

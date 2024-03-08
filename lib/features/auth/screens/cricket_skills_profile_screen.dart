@@ -34,7 +34,7 @@ class CricketSkillsProfileScreen extends ConsumerWidget {
           children: [
             Text(
               'Cricket Skills',
-              style: Theme.of(context).textTheme.titleLarge,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
             AppSizes.largeY,
             AppSizes.tinyY,

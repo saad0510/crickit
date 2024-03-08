@@ -21,6 +21,9 @@ class AppTheme {
     cardTheme: card,
     expansionTileTheme: expansionTile,
     datePickerTheme: datePicker,
+    iconTheme: const IconThemeData(
+      color: AppColors.primary,
+    ),
   );
 
   ThemeData withBrightness(Brightness brightness) {
@@ -44,12 +47,13 @@ class AppTheme {
     );
   }
 
-  final inputTheme = const InputDecorationTheme(
-    filled: false,
+  final inputTheme = InputDecorationTheme(
+    filled: true,
     isDense: true,
     errorMaxLines: 3,
     helperMaxLines: 3,
-    border: OutlineInputBorder(
+    fillColor: Colors.grey.shade100,
+    border: const OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(12)),
     ),
   );
@@ -60,6 +64,9 @@ class AppTheme {
       foregroundColor: AppColors.onPrimary,
       padding: AppPaddings.smallY,
       textStyle: AppFonts.textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w500),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+      ),
     ),
   );
 
@@ -86,16 +93,16 @@ class AppTheme {
   final expansionTile = ExpansionTileThemeData(
     childrenPadding: AppPaddings.small,
     tilePadding: AppPaddings.smallX,
+    backgroundColor: Colors.grey.shade100,
+    collapsedBackgroundColor: Colors.grey.shade100,
     iconColor: AppColors.lightColorScheme.primary,
     collapsedIconColor: AppColors.lightColorScheme.primary,
     clipBehavior: Clip.hardEdge,
-    shape: RoundedRectangleBorder(
-      side: BorderSide(width: 0.5, color: AppColors.lightColorScheme.primary),
-      borderRadius: const BorderRadius.all(Radius.circular(12)),
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(12)),
     ),
-    collapsedShape: RoundedRectangleBorder(
-      side: BorderSide(width: 0.5, color: AppColors.lightColorScheme.primary),
-      borderRadius: const BorderRadius.all(Radius.circular(12)),
+    collapsedShape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(12)),
     ),
   );
 

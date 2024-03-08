@@ -1,4 +1,6 @@
-class BattingSkills {
+import 'i_skills.dart';
+
+class BattingSkills extends ISKills {
   final int batting;
   final int technique;
   final int shotSelection;
@@ -7,7 +9,7 @@ class BattingSkills {
   final int footwork;
   final int power;
 
-  const BattingSkills({
+  BattingSkills({
     required this.batting,
     required this.technique,
     required this.shotSelection,
@@ -17,7 +19,7 @@ class BattingSkills {
     required this.power,
   });
 
-  const BattingSkills.empty()
+  BattingSkills.empty()
       : batting = 0,
         technique = 0,
         shotSelection = 0,
@@ -72,7 +74,14 @@ class BattingSkills {
     );
   }
 
-  double get average {
-    return (batting + technique + shotSelection + timing + placement + footwork + power) / 2;
-  }
+  @override
+  List<int> get values => [
+        batting,
+        technique,
+        shotSelection,
+        timing,
+        placement,
+        footwork,
+        power,
+      ];
 }

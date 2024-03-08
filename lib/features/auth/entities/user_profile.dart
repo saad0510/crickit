@@ -42,7 +42,7 @@ class UserProfile {
       bio: map['bio'],
       gender: Gender.fromMap(map['gender']),
       health: UserHealth.fromMap(map['health']),
-      skills: CricketerSkills.fromMap(map['skills'] ?? const CricketerSkills.empty().toMap()),
+      skills: CricketerSkills.fromMap(map['skills']),
       residence: Residence.fromMap(map['residence']),
       education: Education.fromMap(map['education']),
     );
@@ -73,7 +73,7 @@ class _EmptyUserProfile extends UserProfile {
           bio: '',
           gender: Gender.male,
           health: const UserHealth.empty(),
-          skills: const CricketerSkills.empty(),
+          skills: CricketerSkills.empty(),
           residence: const Residence.empty(),
           education: Education.empty(),
         );

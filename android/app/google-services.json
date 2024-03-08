@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "780496555685",
+    "firebase_url": "https://procom-app-dev-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "procom-app-dev",
     "storage_bucket": "procom-app-dev.appspot.com"
   },

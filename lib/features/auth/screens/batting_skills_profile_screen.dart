@@ -32,7 +32,7 @@ class BattingSkillsProfileScreen extends ConsumerWidget {
           children: [
             Text(
               'Batting Skills',
-              style: Theme.of(context).textTheme.titleLarge,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
             AppSizes.normalY,
             RatingField(

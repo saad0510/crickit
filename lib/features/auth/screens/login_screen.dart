@@ -36,7 +36,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                'Find your perfect cricket team today!',
+                'Welcome back to the\nbest cricket app ever!',
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               AppSizes.largeY,

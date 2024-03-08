@@ -61,6 +61,7 @@ class _CreateTeamScreenState extends ConsumerState<CreateTeamScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: false,
         title: allowEdit ? const Text('Edit Team') : const Text('Create Team'),
       ),
       body: SingleChildScrollView(
@@ -84,7 +85,12 @@ class _CreateTeamScreenState extends ConsumerState<CreateTeamScreen> {
                 initialValue: team.description,
                 onSubmit: (x) => newTeam = team.copyWith(description: x),
               ),
-              AppSizes.smallY,
+              AppSizes.largeY,
+              Text(
+                'Constraints',
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              AppSizes.normalY,
               AppTextField.integer(
                 label: 'Players Count',
                 hint: 'Maximum number of members allowed',

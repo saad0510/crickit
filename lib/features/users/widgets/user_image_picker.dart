@@ -3,21 +3,20 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:procom/features/auth/controllers/user_notifier.dart';
 
 import '../../../app/sizer.dart';
 import '../../auth/controllers/user_provider.dart';
 import 'edit_button.dart';
-import 'image_picker_button.dart';
+import 'user_image.dart';
 
 class UserImagePicker extends ConsumerStatefulWidget {
   const UserImagePicker({
     super.key,
     this.radius = 100,
-    required this.onChanged,
   });
 
   final double radius;
-  final void Function(Uint8List bytes) onChanged;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _UserImagePickerState();
@@ -32,10 +31,14 @@ class _UserImagePickerState extends ConsumerState<UserImagePicker> {
 
     void propagateChange(Uint8List? b) {
       if (b == null) return;
-      setState(() {
-        bytes = b;
-        widget.onChanged(b);
-      });
+      setState(() => bytes = b);
+      ref.watch(userNotifierProvider.notifier).changeProfilePic(bytes!);
+    }
+
+    void pickImage() async {
+      final xfile = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (xfile == null) return;
+      propagateChange(await xfile.readAsBytes());
     }
 
     if (bytes != null) {
@@ -64,11 +67,7 @@ class _UserImagePickerState extends ConsumerState<UserImagePicker> {
         child: EditButton(
           bottom: 0,
           right: 10,
-          onEdit: () async {
-            final xfile = await ImagePicker().pickImage(source: ImageSource.gallery);
-            if (xfile == null) return;
-            propagateChange(await xfile.readAsBytes());
-          },
+          onEdit: pickImage,
           child: ClipOval(
             child: Image.network(
               imageUrl,
@@ -82,10 +81,21 @@ class _UserImagePickerState extends ConsumerState<UserImagePicker> {
       );
     }
 
-    return ImagePickerButton(
-      rounded: true,
-      radius: widget.radius,
-      onPicked: propagateChange,
+    return Stack(
+      children: [
+        const UserImage(
+          '',
+          radius: 90,
+        ),
+        Positioned(
+          bottom: -8.sp,
+          right: -8.sp,
+          child: IconButton(
+            onPressed: pickImage,
+            icon: const Icon(Icons.add_circle),
+          ),
+        ),
+      ],
     );
   }
 }

@@ -39,7 +39,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                'Join us to find your cricket partners!',
+                'Join us to find the best\ncricket partners!',
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               AppSizes.largeY,

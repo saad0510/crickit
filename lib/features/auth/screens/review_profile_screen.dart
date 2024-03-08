@@ -23,7 +23,7 @@ class ReviewProfileScreen extends StatelessWidget {
             Text(
               'Review your information carefully and\nclick save to complete your profile',
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyLarge,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
           ],
         ),

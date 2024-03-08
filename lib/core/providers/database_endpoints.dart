@@ -1,9 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../features/auth/entities/user_data.dart';
 import '../../features/teams/entities/team.dart';
-import '../../features/teams/entities/team_member.dart';
 import 'firebase_providers.dart';
 
 class DatabaseEndpoints {
@@ -31,17 +29,7 @@ class DatabaseEndpoints {
         toFirestore: (team, _) => team.toMap(),
       );
 
-  CollectionReference<TeamMember> teamMembersRef(String teamId) {
-    return ref
-        .read(firestoreProvider) //
-        .collection('teams')
-        .doc(teamId)
-        .collection('members')
-        .withConverter(
-          fromFirestore: (doc, _) => TeamMember.fromMap(doc.data()),
-          toFirestore: (member, _) => member.toMap(),
-        );
-  }
+  late final userImagesRef = ref.read(firebaseStorageProvider).ref('images');
 }
 
 final databaseEndpointsProvider = Provider(DatabaseEndpoints.new);

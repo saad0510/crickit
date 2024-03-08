@@ -1,4 +1,6 @@
-class BowlingSkills {
+import 'i_skills.dart';
+
+class BowlingSkills extends ISKills {
   final int lineLength;
   final int swing;
   final int spinControl;
@@ -6,7 +8,7 @@ class BowlingSkills {
   final int accuracy;
   final int wicketTaking;
 
-  const BowlingSkills({
+  BowlingSkills({
     required this.lineLength,
     required this.swing,
     required this.spinControl,
@@ -15,7 +17,7 @@ class BowlingSkills {
     required this.wicketTaking,
   });
 
-  const BowlingSkills.empty()
+  BowlingSkills.empty()
       : lineLength = 0,
         swing = 0,
         spinControl = 0,
@@ -64,4 +66,14 @@ class BowlingSkills {
       wicketTaking: wicketTaking ?? this.wicketTaking,
     );
   }
+
+  @override
+  List<int> get values => [
+        lineLength,
+        swing,
+        spinControl,
+        pace,
+        accuracy,
+        wicketTaking,
+      ];
 }

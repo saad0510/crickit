@@ -32,7 +32,7 @@ class FieldingSkillsProfileScreen extends ConsumerWidget {
           children: [
             Text(
               'Fielding Skills',
-              style: Theme.of(context).textTheme.titleLarge,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
             AppSizes.normalY,
             RatingField(

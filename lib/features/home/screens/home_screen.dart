@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../app/sizer.dart';
-import '../../teams/widgets/user_teams_list.dart';
+import '../../teams/widgets/joined_teams_list.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -20,7 +20,7 @@ class HomeScreen extends ConsumerWidget {
               style: Theme.of(context).textTheme.titleSmall,
             ),
             AppSizes.smallY,
-            const UserTeamsList(),
+            const JoinedTeamsList(),
           ],
         ),
       ),

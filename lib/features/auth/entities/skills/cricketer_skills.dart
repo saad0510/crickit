@@ -30,21 +30,21 @@ class CricketerSkills {
     required this.battingSkills,
   });
 
-  const CricketerSkills.empty()
+  CricketerSkills.empty()
       : adaptability = 0,
         concentration = 0,
         communication = 0,
         cricketerType = CricketerType.batsman,
         battingType = BattingType.powerHitter,
         bowlingType = BowlingType.allRounder,
-        fieldingSkills = const FieldingSkills.empty(),
-        bowlingSkills = const BowlingSkills.empty(),
-        battingSkills = const BattingSkills.empty();
+        fieldingSkills = FieldingSkills.empty(),
+        bowlingSkills = BowlingSkills.empty(),
+        battingSkills = BattingSkills.empty();
 
   String get playerType {
     return switch (cricketerType) {
-      CricketerType.batsman => '$battingType',
-      CricketerType.bowler => '$bowlingType',
+      CricketerType.batsman => '$battingType, $cricketerType',
+      CricketerType.bowler => '$bowlingType, $cricketerType',
     };
   }
 

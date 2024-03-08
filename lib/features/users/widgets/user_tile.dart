@@ -19,6 +19,7 @@ class UserTile extends ConsumerWidget {
     return ListTile(
       key: ValueKey(user),
       contentPadding: AppPaddings.tinyX,
+      tileColor: Colors.grey.shade100,
       onTap: () {
         context.pushScreen(
           const OtherUserDetailScreen(),

@@ -22,14 +22,21 @@ class InformationCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final onOpened = ref.watch(hideSensitiveInfo) ? null : this.onOpened;
 
-    return ExpansionTile(
-      tilePadding: AppPaddings.smallX.copyWith(
-        right: onOpened == null ? null : 0,
+    return Material(
+      elevation: 2,
+      borderRadius: const BorderRadius.all(Radius.circular(12)),
+      child: ExpansionTile(
+        tilePadding: AppPaddings.smallX.copyWith(
+          right: onOpened == null ? null : 0,
+        ),
+        initiallyExpanded: expanded,
+        title: Text(
+          title,
+          style: const TextStyle(fontWeight: FontWeight.w500),
+        ),
+        controlAffinity: ListTileControlAffinity.leading,
+        children: children,
       ),
-      initiallyExpanded: expanded,
-      title: Text(title),
-      controlAffinity: ListTileControlAffinity.leading,
-      children: children,
     );
   }
 }

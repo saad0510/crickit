@@ -3,10 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../app/sizer.dart';
 import '../../../core/extensions/context_ext.dart';
-import '../../../core/loading/loading_elevated_button.dart';
 import '../../users/controllers/override_widget.dart';
 import '../controllers/current_team_member_provider.dart';
 import '../controllers/current_team_notifier.dart';
+import '../controllers/current_team_provider.dart';
+import '../widgets/join_team_button.dart';
+import '../widgets/team_constraints_card.dart';
 import '../widgets/team_member_tile.dart';
 import 'batting_order_screen.dart';
 import 'bowling_order_screen.dart';
@@ -22,10 +24,18 @@ class TeamDetailScreen extends ConsumerWidget {
     final notifier = ref.read(currentTeamNotifier.notifier);
 
     final allowChange = notifier.isCaptain;
-    final allowJoin = allowChange && !notifier.alreadyJoined;
     team.members.sort();
 
     final titleStyle = Theme.of(context).textTheme.titleSmall;
+
+    void newScreen(Widget screen) {
+      context.pushScreen(
+        screen,
+        overrides: [
+          currentTeamProvider.overrideWith((_) => team.copyWith()),
+        ],
+      );
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -33,7 +43,7 @@ class TeamDetailScreen extends ConsumerWidget {
         actions: [
           if (allowChange)
             TextButton(
-              onPressed: () => context.pushScreen(CreateTeamScreen(editWith: team)),
+              onPressed: () => newScreen(CreateTeamScreen(editWith: team)),
               child: const Text('Edit'),
             ),
         ],
@@ -44,23 +54,8 @@ class TeamDetailScreen extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(team.description),
-            AppSizes.smallY,
-            TextButton(
-              onPressed: () => context.pushScreen(const BattingOrderScreen()),
-              child: const Align(
-                alignment: Alignment.centerLeft,
-                child: Text('Batting Order'),
-              ),
-            ),
-            TextButton(
-              onPressed: () => context.pushScreen(const BowlingOrderScreen()),
-              child: const Align(
-                alignment: Alignment.centerLeft,
-                child: Text('Bowling Lineup'),
-              ),
-            ),
+            AppSizes.normalY,
             if (allowChange) ...[
-              AppSizes.normalY,
               Row(
                 children: [
                   Expanded(
@@ -70,14 +65,14 @@ class TeamDetailScreen extends ConsumerWidget {
                     ),
                   ),
                   TextButton(
-                    onPressed: () => context.pushScreen(const SelectMembersScreen()),
+                    onPressed: () => newScreen(const SelectMembersScreen()),
                     child: const Text('Select'),
                   ),
                 ],
               ),
             ],
+            AppSizes.smallY,
             for (final member in team.members) ...[
-              AppSizes.smallY,
               OverrideWidget(
                 key: ValueKey(member),
                 userId: member.uid,
@@ -86,20 +81,30 @@ class TeamDetailScreen extends ConsumerWidget {
                 ],
                 child: const TeamMemberTile(),
               ),
+              AppSizes.normalY,
             ],
+            const TeamConstraintsCard(),
+            AppSizes.normalY,
+            AppSizes.smallY,
+            ListTile(
+              tileColor: Colors.grey.shade100,
+              visualDensity: VisualDensity.compact,
+              onTap: () => newScreen(const BattingOrderScreen()),
+              title: const Text('Batting Order'),
+              trailing: const Icon(Icons.keyboard_arrow_right_rounded),
+            ),
+            AppSizes.tinyY,
+            ListTile(
+              tileColor: Colors.grey.shade100,
+              visualDensity: VisualDensity.compact,
+              onTap: () => newScreen(const BowlingOrderScreen()),
+              title: const Text('Bowling Lineup'),
+              trailing: const Icon(Icons.keyboard_arrow_right_rounded),
+            ),
           ],
         ),
       ),
-      bottomSheet: allowJoin ? null : const Divider(height: 0),
-      bottomNavigationBar: allowJoin
-          ? null
-          : Padding(
-              padding: AppPaddings.normal,
-              child: LoadingElevatedButton(
-                onPressed: () => notifier.joinTeam().then((_) => context.popTillFirst()),
-                child: const Text('Join Team'),
-              ),
-            ),
+      bottomNavigationBar: const JoinTeamButton(),
     );
   }
 }

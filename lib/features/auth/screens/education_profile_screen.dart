@@ -28,7 +28,7 @@ class EducationProfileScreen extends ConsumerWidget {
           children: [
             Text(
               'Education',
-              style: Theme.of(context).textTheme.titleLarge,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
             AppSizes.normalY,
             EducationField(

@@ -16,7 +16,7 @@ class CurrentTeamNotifier extends Notifier<Team> {
 
   Team get team => state;
 
-  void updateTeam(Team team) => state = team;
+  void updateTeam(Team team) => ref.read(currentTeamProvider.notifier).state = team;
 
   void reset() => state = ref.read(currentTeamProvider);
 

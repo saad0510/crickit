@@ -6,15 +6,16 @@ import 'package:hive_flutter/hive_flutter.dart';
 import '../../../app/routes.dart';
 import '../../../app/sizer.dart';
 import '../../../firebase_options.dart';
-import '../repositories/auth_repo.dart';
 import 'user_notifier.dart';
 
 final routeProvider = FutureProvider<AppRoutes>(
   (ref) async {
-    await _initializeApp();
+    await Future.wait([
+      _initializeApp(),
+      Future.delayed(const Duration(seconds: 1)),
+    ]);
 
     final user = await ref.watch(userNotifierProvider.future);
-    final authRepo = ref.watch(authRepoProvider);
 
     if (user == null) {
       return AppRoutes.login;
@@ -22,10 +23,6 @@ final routeProvider = FutureProvider<AppRoutes>(
 
     if (user.detail.isEmpty) {
       return AppRoutes.login;
-    }
-    final emailVerified = await authRepo.isEmailVerified();
-    if (emailVerified && false) {
-      return AppRoutes.emailVerification;
     }
 
     if (user.profile.isEmpty) {
