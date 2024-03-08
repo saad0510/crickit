@@ -14,7 +14,12 @@ import '../entities/team_role.dart';
 import '../repositories/teams_repo.dart';
 
 class CreateTeamScreen extends ConsumerStatefulWidget {
-  const CreateTeamScreen({super.key});
+  const CreateTeamScreen({
+    super.key,
+    this.editWith,
+  });
+
+  final Team? editWith;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _CreateTeamScreenState();
@@ -23,24 +28,26 @@ class CreateTeamScreen extends ConsumerStatefulWidget {
 class _CreateTeamScreenState extends ConsumerState<CreateTeamScreen> {
   final formKey = GlobalKey<FormState>();
 
-  late var team = Team(
-    teamId: '',
-    title: '',
-    description: '',
-    constraints: const TeamConstraints.zero(),
-    members: [
-      TeamMember(
-        uid: ref.watch(userIdProvider),
-        position: TeamPosition.captain,
-        role: TeamRole.allRounder,
-        battingOrder: DateTime.now().millisecondsSinceEpoch,
-        bowlingOrder: DateTime.now().millisecondsSinceEpoch,
-        joinedAt: DateTime.now(),
-      ),
-    ],
-    createdBy: ref.watch(userIdProvider),
-    createdAt: DateTime.now(),
-  );
+  late final allowEdit = widget.editWith != null;
+  late var team = widget.editWith ??
+      Team(
+        teamId: '',
+        title: '',
+        description: '',
+        constraints: const TeamConstraints.zero(),
+        members: [
+          TeamMember(
+            uid: ref.watch(userIdProvider),
+            position: TeamPosition.captain,
+            role: TeamRole.allRounder,
+            battingOrder: DateTime.now().millisecondsSinceEpoch,
+            bowlingOrder: DateTime.now().millisecondsSinceEpoch,
+            joinedAt: DateTime.now(),
+          ),
+        ],
+        createdBy: ref.watch(userIdProvider),
+        createdAt: DateTime.now(),
+      );
 
   set newTeam(Team newTeam) {
     team = newTeam;
@@ -54,7 +61,7 @@ class _CreateTeamScreenState extends ConsumerState<CreateTeamScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Create Team'),
+        title: allowEdit ? const Text('Edit Team') : const Text('Create Team'),
       ),
       body: SingleChildScrollView(
         padding: AppPaddings.normal,
@@ -114,7 +121,7 @@ class _CreateTeamScreenState extends ConsumerState<CreateTeamScreen> {
         padding: AppPaddings.normal,
         child: LoadingElevatedButton(
           onPressed: submit,
-          child: const Text('Create'),
+          child: allowEdit ? const Text('Edit') : const Text('Create'),
         ),
       ),
     );
@@ -124,7 +131,12 @@ class _CreateTeamScreenState extends ConsumerState<CreateTeamScreen> {
     final isValid = formKey.currentState?.validate() ?? false;
     if (isValid == false) return;
     formKey.currentState?.save();
-    await ref.read(teamsRepoProvider).createTeam(team);
+
+    if (allowEdit)
+      await ref.read(teamsRepoProvider).putTeam(team);
+    else
+      await ref.read(teamsRepoProvider).createTeam(team);
+
     if (mounted) context.pop();
   }
 }

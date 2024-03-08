@@ -10,15 +10,15 @@ import '../entities/team_role.dart';
 import '../repositories/teams_repo.dart';
 import 'current_team_provider.dart';
 
-class CurrentTeamNotifier extends Notifier<bool> {
+class CurrentTeamNotifier extends Notifier<Team> {
   @override
-  bool build() => false;
+  Team build() => ref.watch(currentTeamProvider);
 
-  Team get team => ref.read(currentTeamProvider);
+  Team get team => state;
 
-  void updateTeam(Team team) {
-    ref.read(currentTeamProvider.notifier).state = team;
-  }
+  void updateTeam(Team team) => state = team;
+
+  void reset() => state = ref.read(currentTeamProvider);
 
   Future<void> save() {
     return ref.watch(teamsRepoProvider).putTeam(team);
@@ -26,6 +26,10 @@ class CurrentTeamNotifier extends Notifier<bool> {
 
   bool hasMember(UserData user) {
     return team.members.find((m) => m.uid == user.uid) != null;
+  }
+
+  bool get alreadyJoined {
+    return team.members.find((m) => m.uid == ref.watch(userIdProvider)) != null;
   }
 
   void addMember(UserData user) {
@@ -72,6 +76,8 @@ class CurrentTeamNotifier extends Notifier<bool> {
   }
 
   void battingReorder(int oldIndex, int newIndex) {
+    if (!isCaptain) return;
+
     final members = List<TeamMember>.from(team.members);
     members.sort((a, b) => a.battingOrder.compareTo(b.battingOrder));
 
@@ -83,6 +89,8 @@ class CurrentTeamNotifier extends Notifier<bool> {
   }
 
   void bowlingReorder(int oldIndex, int newIndex) {
+    if (!isCaptain) return;
+
     final members = List<TeamMember>.from(team.members);
     members.sort((a, b) => a.bowlingOrder.compareTo(b.bowlingOrder));
 
@@ -92,9 +100,15 @@ class CurrentTeamNotifier extends Notifier<bool> {
       team.copyWith(members: members),
     );
   }
+
+  Future<void> joinTeam() async {
+    final user = ref.read(userProvider);
+    addMember(user);
+    await save();
+  }
 }
 
-final currentTeamNotifier = NotifierProvider<CurrentTeamNotifier, bool>(
+final currentTeamNotifier = NotifierProvider<CurrentTeamNotifier, Team>(
   CurrentTeamNotifier.new,
   dependencies: [currentTeamProvider],
 );

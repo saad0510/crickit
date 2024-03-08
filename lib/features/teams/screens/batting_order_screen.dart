@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../app/sizer.dart';
-import '../../../core/extensions/context_ext.dart';
-import '../../../core/loading/loading_elevated_button.dart';
 import '../../users/controllers/override_widget.dart';
 import '../controllers/current_team_member_provider.dart';
 import '../controllers/current_team_notifier.dart';
-import '../controllers/current_team_provider.dart';
 import '../entities/team_member.dart';
+import '../widgets/save_team_button.dart';
 import '../widgets/team_member_tile.dart';
 
 class BattingOrderScreen extends ConsumerWidget {
@@ -16,13 +14,8 @@ class BattingOrderScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final team = ref.watch(currentTeamProvider);
+    final team = ref.watch(currentTeamNotifier);
     final notifier = ref.read(currentTeamNotifier.notifier);
-
-    Future<void> save() async {
-      await notifier.save();
-      if (context.mounted) context.popTillFirst();
-    }
 
     final members = List<TeamMember>.from(team.members);
     members.sort((a, b) => a.battingOrder.compareTo(b.battingOrder));
@@ -42,7 +35,7 @@ class BattingOrderScreen extends ConsumerWidget {
             userId: member.uid,
             parent: ProviderScope.containerOf(context),
             moreOverrides: [
-              currentTeamMemberProvider.overrideWith((_) => member),
+              currentTeamMemberProvider.overrideWithValue(member),
             ],
             child: Padding(
               padding: AppPaddings.tinyY,
@@ -55,14 +48,7 @@ class BattingOrderScreen extends ConsumerWidget {
           notifier.battingReorder(oldIndex, newIndex);
         },
       ),
-      bottomSheet: const Divider(height: 0),
-      bottomNavigationBar: Padding(
-        padding: AppPaddings.normal,
-        child: LoadingElevatedButton(
-          onPressed: team.isValid ? save : null,
-          child: const Text('Save'),
-        ),
-      ),
+      bottomNavigationBar: const SaveTeamButton(),
     );
   }
 }

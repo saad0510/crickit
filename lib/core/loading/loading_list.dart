@@ -36,13 +36,14 @@ class LoadingList<T> extends StatelessWidget {
     final shrinkWrap = !scrollable;
     final physics = scrollable ? const AlwaysScrollableScrollPhysics() : const NeverScrollableScrollPhysics();
     final heightFactor = scrollable ? null : 10.0;
+    final padding = scrollable ? AppPaddings.small : EdgeInsets.zero;
 
     if (value.isLoading && !value.isReloading) {
       return ListView.builder(
         itemCount: 5,
         shrinkWrap: shrinkWrap,
         physics: physics,
-        padding: AppPaddings.small,
+        padding: padding,
         itemBuilder: (_, i) => loader,
       );
     }
@@ -50,7 +51,7 @@ class LoadingList<T> extends StatelessWidget {
     if (value.hasError) {
       return Container(
         alignment: Alignment.topCenter,
-        padding: AppPaddings.small,
+        padding: padding,
         child: ErrorTile(value.error),
       );
     }
@@ -73,7 +74,7 @@ class LoadingList<T> extends StatelessWidget {
       itemCount: items.length,
       shrinkWrap: shrinkWrap,
       physics: physics,
-      padding: AppPaddings.small,
+      padding: padding,
       separatorBuilder: (_, i) => separator,
       itemBuilder: (_, i) => builder(items[i], i),
     );

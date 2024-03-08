@@ -2,31 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../app/sizer.dart';
-import '../../../core/extensions/context_ext.dart';
-import '../../../core/loading/loading_elevated_button.dart';
 import '../../../core/loading/loading_list.dart';
+import '../../auth/controllers/user_provider.dart';
 import '../../users/controllers/current_user_provider.dart';
 import '../../users/controllers/filtered_users_provider.dart';
 import '../../users/widgets/user_tile.dart';
 import '../controllers/current_team_notifier.dart';
-import '../controllers/current_team_provider.dart';
+import '../widgets/save_team_button.dart';
 import '../widgets/team_constraint_row.dart';
 
-class SelectMembersScreen extends ConsumerWidget {
+class SelectMembersScreen extends ConsumerStatefulWidget {
   const SelectMembersScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final team = ref.watch(currentTeamProvider);
+  ConsumerState<ConsumerStatefulWidget> createState() => _SelectMembersScreenState();
+}
+
+class _SelectMembersScreenState extends ConsumerState<SelectMembersScreen> {
+  @override
+  Widget build(BuildContext context) {
+    final team = ref.watch(currentTeamNotifier);
     final notifier = ref.watch(currentTeamNotifier.notifier);
 
     final members = team.members;
     final validMembers = members.length <= team.constraints.maxPlayers;
-
-    Future<void> save() async {
-      await notifier.save();
-      if (context.mounted) context.pop();
-    }
 
     return Scaffold(
       appBar: AppBar(
@@ -66,14 +65,20 @@ class SelectMembersScreen extends ConsumerWidget {
           ),
         ],
       ),
-      bottomSheet: const Divider(height: 0),
-      bottomNavigationBar: Padding(
-        padding: AppPaddings.normal,
-        child: LoadingElevatedButton(
-          onPressed: team.members.isEmpty ? null : save,
-          child: const Text('Save'),
-        ),
-      ),
+      bottomNavigationBar: const SaveTeamButton(),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    setFilters();
+  }
+
+  void setFilters() async {
+    await Future.value();
+    final userId = ref.read(userIdProvider);
+    final updateFilters = ref.read(userFiltersProvider.notifier).update;
+    updateFilters((f) => f.copyWith(excludeUsers: [userId]));
   }
 }
