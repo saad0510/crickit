@@ -41,6 +41,13 @@ class CricketerSkills {
         bowlingSkills = const BowlingSkills.empty(),
         battingSkills = const BattingSkills.empty();
 
+  String get playerType {
+    return switch (cricketerType) {
+      CricketerType.batsman => '$battingType',
+      CricketerType.bowler => '$bowlingType',
+    };
+  }
+
   Map<String, dynamic> toMap() {
     return {
       'adaptability': adaptability,

@@ -12,7 +12,6 @@ import '../entities/user_detail.dart';
 import '../widgets/app_date_picker_field.dart';
 import '../widgets/app_text_field.dart';
 import '../widgets/highlighted_text_button.dart';
-import '../widgets/main_title.dart';
 
 class SignupScreen extends ConsumerStatefulWidget {
   const SignupScreen({super.key});
@@ -39,8 +38,9 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const MainTitle(
+              Text(
                 'Join us to find your cricket partners!',
+                style: Theme.of(context).textTheme.titleLarge,
               ),
               AppSizes.largeY,
               AppTextField.name(

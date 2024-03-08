@@ -23,25 +23,8 @@ class AppTheme {
     datePickerTheme: datePicker,
   );
 
-  late final darkTheme = ThemeData.dark(useMaterial3: true).copyWith(
-    colorScheme: AppColors.darkColorScheme,
-    appBarTheme: const AppBarTheme(
-      centerTitle: true,
-      surfaceTintColor: Colors.transparent,
-      systemOverlayStyle: AppUiOverlays.darkOverlay,
-    ),
-    elevatedButtonTheme: elevatedButton,
-    textButtonTheme: textButton,
-    inputDecorationTheme: inputTheme,
-    checkboxTheme: checkbox,
-    cardTheme: card,
-    expansionTileTheme: expansionTile,
-    datePickerTheme: datePicker,
-  );
-
   ThemeData withBrightness(Brightness brightness) {
-    final isDark = brightness == Brightness.dark;
-    final theme = isDark ? darkTheme : lightTheme;
+    final theme = lightTheme;
     final textTheme = AppFonts.textTheme.merge(theme.textTheme);
     final titleTextStyle = textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w500);
 
@@ -62,7 +45,7 @@ class AppTheme {
   }
 
   final inputTheme = const InputDecorationTheme(
-    filled: true,
+    filled: false,
     isDense: true,
     errorMaxLines: 3,
     helperMaxLines: 3,
@@ -103,12 +86,16 @@ class AppTheme {
   final expansionTile = ExpansionTileThemeData(
     childrenPadding: AppPaddings.small,
     tilePadding: AppPaddings.smallX,
-    backgroundColor: AppColors.lightColorScheme.secondaryContainer,
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(Radius.circular(12)),
+    iconColor: AppColors.lightColorScheme.primary,
+    collapsedIconColor: AppColors.lightColorScheme.primary,
+    clipBehavior: Clip.hardEdge,
+    shape: RoundedRectangleBorder(
+      side: BorderSide(width: 0.5, color: AppColors.lightColorScheme.primary),
+      borderRadius: const BorderRadius.all(Radius.circular(12)),
     ),
-    collapsedShape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(Radius.circular(12)),
+    collapsedShape: RoundedRectangleBorder(
+      side: BorderSide(width: 0.5, color: AppColors.lightColorScheme.primary),
+      borderRadius: const BorderRadius.all(Radius.circular(12)),
     ),
   );
 

@@ -8,7 +8,6 @@ import '../entities/skills/bowling_type.dart';
 import '../entities/skills/cricketer_skills.dart';
 import '../entities/skills/cricketer_type.dart';
 import '../widgets/app_drop_down_field.dart';
-import '../widgets/main_title.dart';
 import '../widgets/rating_field.dart';
 
 class CricketSkillsProfileScreen extends ConsumerWidget {
@@ -33,7 +32,10 @@ class CricketSkillsProfileScreen extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const MainTitle('Cricket Skills'),
+            Text(
+              'Cricket Skills',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
             AppSizes.largeY,
             AppSizes.tinyY,
             RatingField(

@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../app/sizer.dart';
 import '../../users/controllers/current_user_provider.dart';
 import '../entities/skills/fielding_skills.dart';
-import '../widgets/main_title.dart';
 import '../widgets/rating_field.dart';
 
 class FieldingSkillsProfileScreen extends ConsumerWidget {
@@ -31,7 +30,10 @@ class FieldingSkillsProfileScreen extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const MainTitle('Fielding Skills'),
+            Text(
+              'Fielding Skills',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
             AppSizes.normalY,
             RatingField(
               label: 'Catching',

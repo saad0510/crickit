@@ -16,6 +16,11 @@ class UserRepo {
     return user.data()!;
   }
 
+  Future<List<UserData>> getAllUsers() async {
+    final users = await endpoints.usersRef.get();
+    return users.docs.map((u) => u.data()).toList();
+  }
+
   Future<void> updateUser(UserData user) async {
     await endpoints.usersRef.doc(user.uid).set(user);
   }

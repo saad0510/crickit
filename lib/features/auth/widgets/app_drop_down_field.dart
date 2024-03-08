@@ -22,7 +22,6 @@ class AppDropDownField<T> extends StatelessWidget {
       isDense: true,
       decoration: InputDecoration(labelText: label),
       style: Theme.of(context).textTheme.bodyLarge,
-      dropdownColor: Theme.of(context).colorScheme.primaryContainer,
       borderRadius: const BorderRadius.all(Radius.circular(10)),
       icon: const Icon(Icons.keyboard_arrow_down),
       value: initial,
@@ -32,6 +31,7 @@ class AppDropDownField<T> extends StatelessWidget {
           ? (value) {
               if (value == null) return;
               onSelected(value);
+              FocusScope.of(context).nextFocus();
             }
           : null,
       items: List.generate(

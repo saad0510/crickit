@@ -28,12 +28,6 @@ class UserDetailScreen extends ConsumerWidget {
             UserSummary(user),
             const UserBioText(),
             AppSizes.normalY,
-            const Row(
-              children: [
-                CircularProgressIndicator(),
-              ],
-            ),
-            AppSizes.normalY,
             AboutCard(user),
             AppSizes.smallY,
             ResidenceCard(user),

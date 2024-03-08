@@ -21,29 +21,34 @@ class InformationRow extends StatelessWidget {
       color: Theme.of(context).colorScheme.primary,
     );
 
-    return Card(
-      elevation: 0,
-      color: Colors.white,
-      child: Padding(
-        padding: AppPaddings.small,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              title,
-              style: style,
-              textAlign: TextAlign.left,
-            ),
-            if (title.isNotEmpty) AppSizes.smallX,
-            Expanded(
-              child: Text(
-                value,
-                style: style,
-                textAlign: title.isNotEmpty ? TextAlign.right : TextAlign.left,
-              ),
-            ),
-          ],
+    return Container(
+      padding: AppPaddings.small,
+      margin: EdgeInsets.symmetric(vertical: 2.sp),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: const BorderRadius.all(Radius.circular(12)),
+        border: Border.all(
+          width: 0.5,
+          color: Theme.of(context).colorScheme.primary,
         ),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: style,
+            textAlign: TextAlign.left,
+          ),
+          if (title.isNotEmpty) AppSizes.smallX,
+          Expanded(
+            child: Text(
+              value,
+              style: style,
+              textAlign: title.isNotEmpty ? TextAlign.right : TextAlign.left,
+            ),
+          ),
+        ],
       ),
     );
   }

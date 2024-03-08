@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../teams/screens/teams_screen.dart';
 import '../../users/screens/user_detail_screen.dart';
 import '../entities/nav_item.dart';
 import '../screens/home_screen.dart';
@@ -8,6 +9,7 @@ import '../screens/home_screen.dart';
 class NavigationNotifier extends AutoDisposeNotifier<NavItem> {
   final screens = {
     NavItem.home: const HomeScreen(),
+    NavItem.team: const TeamsScreen(),
     NavItem.profile: const UserDetailScreen(),
   };
 

@@ -5,7 +5,6 @@ import '../../../app/sizer.dart';
 import '../../users/controllers/current_user_provider.dart';
 import '../entities/user_profile.dart';
 import '../widgets/education_field.dart';
-import '../widgets/main_title.dart';
 
 class EducationProfileScreen extends ConsumerWidget {
   const EducationProfileScreen({super.key});
@@ -27,7 +26,10 @@ class EducationProfileScreen extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const MainTitle('Education'),
+            Text(
+              'Education',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
             AppSizes.normalY,
             EducationField(
               education: profile.education,

@@ -7,7 +7,6 @@ import '../controllers/countries_provider.dart';
 import '../entities/user_profile.dart';
 import '../widgets/app_autocomplete_field.dart';
 import '../widgets/app_text_field.dart';
-import '../widgets/main_title.dart';
 
 class ResidenceProfileScreen extends ConsumerWidget {
   const ResidenceProfileScreen({super.key});
@@ -29,7 +28,10 @@ class ResidenceProfileScreen extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const MainTitle('Residency'),
+            Text(
+              'Residency',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
             AppSizes.largeY,
             AppTextField.name(
               label: 'City',

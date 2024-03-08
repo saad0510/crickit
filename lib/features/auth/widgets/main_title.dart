@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../app/assets.dart';
 import '../../../app/sizer.dart';
 
 class MainTitle extends StatelessWidget {
@@ -8,12 +7,10 @@ class MainTitle extends StatelessWidget {
     this.text, {
     super.key,
     this.subtitle,
-    this.showLogo = false,
   });
 
   final String text;
   final String? subtitle;
-  final bool showLogo;
 
   @override
   Widget build(BuildContext context) {
@@ -21,25 +18,9 @@ class MainTitle extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Row(
-          children: [
-            Expanded(
-              child: Text(
-                text,
-                style: Theme.of(context)
-                    .textTheme
-                    .titleLarge //
-                    ?.copyWith(fontWeight: FontWeight.w500),
-              ),
-            ),
-            if (showLogo) ...[
-              AppSizes.smallX,
-              Image.asset(
-                AppImages.appLogo,
-                width: 0.17.dw,
-              ),
-            ],
-          ],
+        Text(
+          text,
+          style: Theme.of(context).textTheme.titleLarge,
         ),
         if (subtitle != null) ...[
           AppSizes.smallY,

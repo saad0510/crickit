@@ -37,7 +37,7 @@ class LoadingList<T> extends StatelessWidget {
     final physics = scrollable ? const AlwaysScrollableScrollPhysics() : const NeverScrollableScrollPhysics();
     final heightFactor = scrollable ? null : 10.0;
 
-    if (value.isLoading) {
+    if (value.isLoading && !value.isReloading) {
       return ListView.builder(
         itemCount: 5,
         shrinkWrap: shrinkWrap,

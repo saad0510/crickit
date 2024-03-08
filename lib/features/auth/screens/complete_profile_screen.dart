@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../app/assets.dart';
 import '../../../app/sizer.dart';
 import '../../../core/loading/loading_text_button.dart';
 import '../../users/controllers/current_user_provider.dart';
 import '../controllers/user_notifier.dart';
-import '../widgets/main_title.dart';
 import '../widgets/steps_list.dart';
 import 'batting_skills_profile_screen.dart';
 import 'bowling_skills_profile_screen.dart';
@@ -48,9 +48,20 @@ class _CompleteProfileScreenState extends ConsumerState<CompleteProfileScreen> {
         children: [
           Padding(
             padding: AppPaddings.normal.copyWith(bottom: 0),
-            child: const MainTitle(
-              'Complete Profile',
-              showLogo: true,
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    'Complete Profile',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                ),
+                AppSizes.smallX,
+                Image.asset(
+                  AppImages.appLogo,
+                  width: 0.17.dw,
+                ),
+              ],
             ),
           ),
           Expanded(

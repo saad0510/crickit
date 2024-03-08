@@ -9,7 +9,6 @@ import '../../users/controllers/current_user_provider.dart';
 import '../entities/enums/gender.dart';
 import '../entities/user_profile.dart';
 import '../widgets/app_text_field.dart';
-import '../widgets/main_title.dart';
 
 class GenderProfileScreen extends ConsumerWidget {
   const GenderProfileScreen({super.key});
@@ -32,7 +31,10 @@ class GenderProfileScreen extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const MainTitle('Gender'),
+            Text(
+              'Gender',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
             AppSizes.normalY,
             for (final gender in Gender.values) ...[
               CheckboxListTile(
@@ -51,7 +53,10 @@ class GenderProfileScreen extends ConsumerWidget {
               AppSizes.smallY,
             ],
             AppSizes.normalY,
-            const MainTitle('Bio'),
+            Text(
+              'Bio',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
             AppSizes.normalY,
             AppTextField(
               label: '',
@@ -68,7 +73,10 @@ class GenderProfileScreen extends ConsumerWidget {
               ),
             ),
             AppSizes.normalY,
-            const MainTitle('Health'),
+            Text(
+              'Health',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
             AppSizes.normalY,
             Row(
               children: [

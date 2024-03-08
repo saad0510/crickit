@@ -27,10 +27,7 @@ class InformationCard extends ConsumerWidget {
         right: onOpened == null ? null : 0,
       ),
       initiallyExpanded: expanded,
-      title: Text(
-        title,
-        style: Theme.of(context).textTheme.labelMedium,
-      ),
+      title: Text(title),
       controlAffinity: ListTileControlAffinity.leading,
       children: children,
     );

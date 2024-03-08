@@ -9,7 +9,6 @@ import '../../../core/utils/form_validations.dart';
 import '../controllers/auth_notifier.dart';
 import '../widgets/app_text_field.dart';
 import '../widgets/highlighted_text_button.dart';
-import '../widgets/main_title.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -36,7 +35,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const MainTitle('Find your perfect cricket team today!'),
+              Text(
+                'Find your perfect cricket team today!',
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
               AppSizes.largeY,
               AppTextField.email(
                 label: 'Email',
