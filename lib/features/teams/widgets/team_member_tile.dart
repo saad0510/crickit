@@ -42,7 +42,7 @@ class TeamMemberTile extends ConsumerWidget {
               AppSizes.tinyX,
               UserImage(
                 user.detail.imageUrl,
-                radius: 65,
+                radius: 60,
                 userId: user.uid,
               ),
               AppSizes.tinyX,

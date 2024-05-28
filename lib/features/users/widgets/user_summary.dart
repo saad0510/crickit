@@ -21,10 +21,10 @@ class UserSummary extends ConsumerWidget {
         if (publicView)
           UserImage(
             user.detail.imageUrl,
-            radius: 80,
+            radius: 70,
           )
         else
-          const UserImagePicker(radius: 80),
+          const UserImagePicker(radius: 70),
         AppSizes.smallX,
         Expanded(
           child: Column(

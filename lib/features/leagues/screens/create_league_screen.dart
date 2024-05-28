@@ -116,6 +116,6 @@ class _CreateLeagueScreenState extends ConsumerState<CreateLeagueScreen> {
     else
       await ref.read(leaguesRepoProvider).createLeague(league);
 
-    if (mounted) context.pop();
+    if (mounted) context.popTillFirst();
   }
 }

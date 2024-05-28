@@ -143,6 +143,6 @@ class _CreateTeamScreenState extends ConsumerState<CreateTeamScreen> {
     else
       await ref.read(teamsRepoProvider).createTeam(team);
 
-    if (mounted) context.pop();
+    if (mounted) context.popTillFirst();
   }
 }

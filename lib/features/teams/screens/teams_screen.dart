@@ -12,7 +12,7 @@ class TeamsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
-        title: const Text('Teams'),
+        title: const Text('Join Teams'),
         titleTextStyle: Theme.of(context).textTheme.titleMedium,
       ),
       body: const AvailableTeamsList(),

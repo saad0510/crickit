@@ -27,7 +27,7 @@ class UserTile extends ConsumerWidget {
       },
       leading: UserImage(
         user.detail.imageUrl,
-        radius: 55,
+        radius: 50,
         userId: user.uid,
       ),
       title: Text(

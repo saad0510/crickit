@@ -18,6 +18,7 @@ class HomeScreen extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            AppSizes.smallY,
             Text(
               'Leagues',
               style: Theme.of(context).textTheme.titleSmall,
